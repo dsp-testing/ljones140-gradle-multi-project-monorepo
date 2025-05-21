@@ -7,11 +7,32 @@
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.3.70" apply false
+    // Using Kotlin 1.9.0 which matches the version bundled with Gradle 8.3
+    id("org.jetbrains.kotlin.jvm") version "1.9.0" apply false
+}
+
+// Apply Java and Kotlin configuration to all projects
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    // Configure Kotlin compiler options for all subprojects
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+            // Use embedded compiler to avoid JDK tools requirement
+            useK2 = false
+        }
+    }
+
+    // Configure Java compiler options for all subprojects
+    tasks.withType<JavaCompile>().configureEach {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    mavenCentral()
 }

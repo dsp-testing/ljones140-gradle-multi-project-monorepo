@@ -11,14 +11,14 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     application
 
-    // Create shadow jar
-    id("com.github.johnrengelman.shadow") version "4.0.4"
+    // Create shadow jar - using a version compatible with Gradle 8.3
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -39,7 +39,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "inventory.InventoryAppKt"
+    mainClass.set("inventory.InventoryAppKt")
 }
 
 tasks {
