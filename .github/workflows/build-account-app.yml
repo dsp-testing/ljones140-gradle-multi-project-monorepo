@@ -19,6 +19,6 @@ jobs:
         run: ./gradlew :apps:account-app:build
 
 
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@f503a1870408dcf2c35d5c2b8a68e69211042c7d
         with:
           role-skip-session-tagging: true
