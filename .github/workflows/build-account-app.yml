@@ -21,3 +21,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: apps/account-app/build/libs/*.jar
+            with:
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-skip-session-tagging: true
